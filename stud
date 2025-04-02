@@ -1,0 +1,53 @@
+#include <stdio.h>
+
+int main() {
+    int n, i, j;
+    
+    // Ask for the number of students
+    printf("Enter the number of students: ");
+    scanf("%d", &n);
+
+    // Define the student structure
+    struct Student {
+        char name[50];
+        int roll_no;
+        int marks[3]; // Marks in 3 subjects
+    };
+
+    struct Student students[n]; // Array to hold student data
+
+    // Input details for each student
+    for (i = 0; i < n; i++) {
+        printf("\nEnter details for student %d:\n", i + 1);
+        
+        // Get student's name
+        printf("Enter name: ");
+        getchar();  // To consume the newline character left by scanf
+        fgets(students[i].name, sizeof(students[i].name), stdin);
+        
+        // Get student's roll number
+        printf("Enter roll number: ");
+        scanf("%d", &students[i].roll_no);
+        
+        // Get marks for 3 subjects
+        printf("Enter marks for 3 subjects: ");
+        for (j = 0; j < 3; j++) {
+            scanf("%d", &students[i].marks[j]);
+        }
+    }
+
+    // Display total and average for each student
+    printf("\nResults:\n");
+    for (i = 0; i < n; i++) {
+        int total = students[i].marks[0] + students[i].marks[1] + students[i].marks[2];
+        float average = total / 3.0; // Average marks
+        
+        // Print the student details
+        printf("\nStudent: %s", students[i].name);
+        printf("Roll Number: %d\n", students[i].roll_no);
+        printf("Total Marks: %d\n", total);
+        printf("Average Marks: %.2f\n", average);
+    }
+
+    return 0;
+}
